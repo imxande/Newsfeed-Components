@@ -112,3 +112,52 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+// ============= Selecting the class articles ============
+const myArticle = document.querySelector('.articles');
+
+data.forEach(item => {
+  myArticle.appendChild(article(item));
+ 
+})
+
+// =======Function that creates a component, with an object as a parameter=========
+function article(obj){
+
+    // define new elements
+  const articleDiv = document.createElement('div');
+  const myTitle = document.createElement('h2');
+  const myDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const buttonSpan = document.createElement('span');
+
+    // Setup structure of elements
+  articleDiv.appendChild(myTitle);
+  articleDiv.appendChild(myDate);
+  articleDiv.appendChild(para1);
+  articleDiv.appendChild(para2);
+  articleDiv.appendChild(para3);
+  articleDiv.appendChild(buttonSpan);
+
+  // add classes
+  articleDiv.classList.add('article');
+  myDate.classList.add('date');
+  buttonSpan.classList.add('expandButton');
+
+  // set text content
+  myTitle.textContent = obj.title;
+  myDate.textContent = obj.date;
+  para1.textContent = obj.firstParagraph;
+  para2.textContent = obj.secondParagraph;
+  para3.textContent = obj.thirdParagraph;
+  buttonSpan.textContent = 'Click Here!'
+
+  // adding event listener
+  buttonSpan.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open');
+  })
+
+  return articleDiv;
+}
